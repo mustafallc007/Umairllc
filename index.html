@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TestLab — Modern Web Testing Sandbox</title>
+  <meta name="description" content="A lightweight, beautiful, and complete testing page for web development, UI verification, network tests, and event inspection.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+  <div class="background-glow"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon" id="brand-logo-btn" title="Click to cycle logo style">
+          <svg id="brand-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="brand-grad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6366F1"/>
+                <stop offset="0.5" stop-color="#A855F7"/>
+                <stop offset="1" stop-color="#EC4899"/>
+              </linearGradient>
+              <linearGradient id="inner-grad" x1="10" y1="10" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#38BDF8"/>
+                <stop offset="1" stop-color="#6366F1"/>
+              </linearGradient>
+            </defs>
+            <!-- Hexagonal shield -->
+            <polygon points="16,3 28,9.5 28,22.5 16,29 4,22.5 4,9.5" stroke="url(#brand-grad)" stroke-width="2.2" stroke-linejoin="round" fill="rgba(99, 102, 241, 0.12)"/>
+            <!-- 3D Isometric Core -->
+            <path d="M16 9L23 13V19L16 23L9 19V13L16 9Z" stroke="url(#inner-grad)" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M16 9V16M16 16L23 20M16 16L9 20" stroke="url(#brand-grad)" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="16" cy="16" r="2.2" fill="#ffffff"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Umair LLC <span class="badge">TestLab</span></h1>
+          <p>Modern Web &amp; UI Testing Sandbox</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="status-pill" id="network-status" title="Network connectivity status">
+          <span class="status-dot online"></span>
+          <span id="network-text">Online</span>
+        </div>
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle theme" title="Switch Theme">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-container">
+
+    <!-- Overview Bar -->
+    <section class="quick-stats-bar">
+      <div class="stat-item">
+        <span class="stat-label">Viewport</span>
+        <span class="stat-value" id="viewport-stat">0 × 0 px</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Color Scheme</span>
+        <span class="stat-value" id="color-scheme-stat">Dark</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Device Pixel Ratio</span>
+        <span class="stat-value" id="dpr-stat">1.0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Clicks Recorded</span>
+        <span class="stat-value highlight" id="total-clicks-stat">0</span>
+      </div>
+    </section>
+
+    <!-- Grid of Test Modules -->
+    <div class="test-grid">
+
+      <!-- Module 1: Environment & Client Info -->
+      <section class="card" id="card-env">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="icon">🖥️</span>
+            <h3>Client Environment</h3>
+          </div>
+          <button class="btn-sm" id="copy-env-btn">Copy Info</button>
+        </div>
+        <div class="card-body">
+          <div class="info-list">
+            <div class="info-row">
+              <span class="info-key">User Agent</span>
+              <span class="info-val code" id="ua-val">-</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">Language</span>
+              <span class="info-val" id="lang-val">-</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">Screen Resolution</span>
+              <span class="info-val" id="screen-val">-</span>
+            </div>
+            <div class="info-row">
+              <span class="info-key">Touch Support</span>
+              <span class="info-val" id="touch-val">-</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Module 2: Interactive Events & Counter -->
+      <section class="card" id="card-events">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="icon">🎯</span>
+            <h3>Interactive Events</h3>
+          </div>
+          <button class="btn-sm" id="reset-counter-btn">Reset</button>
+        </div>
+        <div class="card-body">
+          <div class="counter-display">
+            <span class="counter-number" id="click-counter">0</span>
+            <span class="counter-label">Clicks</span>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn-primary" id="increment-btn">Click Me (+1)</button>
+            <button class="btn btn-secondary" id="dblclick-btn">Double Click Me</button>
+          </div>
+
+          <div class="key-tester-box">
+            <div class="key-hint">Press any keyboard key to test:</div>
+            <div class="key-display" id="key-display">
+              <span class="key-badge" id="key-name">None</span>
+              <span class="key-code" id="key-code">Code: -</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Module 3: Form Controls & Inputs -->
+      <section class="card" id="card-forms">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="icon">📝</span>
+            <h3>Form Controls Test</h3>
+          </div>
+          <span class="badge">Live Sync</span>
+        </div>
+        <div class="card-body">
+          <form id="test-form" onsubmit="return false;">
+            <div class="form-group">
+              <label for="input-text">Text Input</label>
+              <input type="text" id="input-text" placeholder="Type something here..." value="Hello World">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="select-option">Select Dropdown</label>
+                <select id="select-option">
+                  <option value="Option Alpha">Option Alpha</option>
+                  <option value="Option Beta">Option Beta</option>
+                  <option value="Option Gamma">Option Gamma</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="range-slider">Slider: <span id="slider-val">50</span>%</label>
+                <input type="range" id="range-slider" min="0" max="100" value="50">
+              </div>
+            </div>
+
+            <div class="form-row switches">
+              <label class="toggle-control">
+                <input type="checkbox" id="toggle-checkbox" checked>
+                <span class="toggle-slider"></span>
+                <span class="toggle-label">Toggle Active</span>
+              </label>
+
+              <button class="btn btn-secondary" id="preview-form-btn">Preview JSON</button>
+            </div>
+
+            <div class="code-preview" id="form-json-output">
+              <pre><code>// Form state will output here</code></pre>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Module 4: Network & HTTP Fetch Tester -->
+      <section class="card" id="card-network">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="icon">🌐</span>
+            <h3>API &amp; Network Tester</h3>
+          </div>
+          <span class="badge status-badge" id="api-status-badge">Idle</span>
+        </div>
+        <div class="card-body">
+          <div class="input-with-button">
+            <input type="url" id="api-url" value="https://jsonplaceholder.typicode.com/todos/1" placeholder="Enter endpoint URL">
+            <button class="btn btn-primary" id="fetch-btn">Send GET</button>
+          </div>
+
+          <div class="request-meta">
+            <span>Response Time: <strong id="latency-val">-</strong></span>
+            <span>HTTP Status: <strong id="http-status-val">-</strong></span>
+          </div>
+
+          <div class="code-preview-scroll">
+            <pre><code id="api-response-output">// Click "Send GET" to test network request</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Module 5: Storage & Cache Verification -->
+      <section class="card" id="card-storage">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="icon">💾</span>
+            <h3>LocalStorage Tester</h3>
+          </div>
+          <button class="btn-sm btn-danger" id="clear-storage-btn">Clear All</button>
+        </div>
+        <div class="card-body">
+          <div class="form-row">
+            <input type="text" id="storage-key" placeholder="Key (e.g. user_id)" value="test_key">
+            <input type="text" id="storage-val" placeholder="Value" value="test_value_123">
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-secondary" id="save-storage-btn">Save to Storage</button>
+            <button class="btn btn-secondary" id="read-storage-btn">Refresh List</button>
+          </div>
+
+          <div class="storage-items-list" id="storage-list">
+            <p class="empty-hint">No items saved yet</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Module 6: UI Notifications & Audio Test -->
+      <section class="card" id="card-feedback">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="icon">🔔</span>
+            <h3>Alerts &amp; Audio Test</h3>
+          </div>
+          <span class="badge">Web APIs</span>
+        </div>
+        <div class="card-body">
+          <p class="card-description">Trigger toasts, modal dialogs, and Web Audio API tone synthesis.</p>
+          
+          <div class="action-grid">
+            <button class="btn btn-outline" id="toast-success-btn">✨ Success Toast</button>
+            <button class="btn btn-outline" id="toast-error-btn">⚠️ Error Toast</button>
+            <button class="btn btn-outline" id="open-modal-btn">🪟 Open Modal</button>
+            <button class="btn btn-outline" id="audio-beep-btn">🔊 Play Test Beep</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Interactive Modal -->
+  <div class="modal-overlay" id="test-modal" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h4>Modal Dialog Verification</h4>
+        <button class="btn-close" id="close-modal-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>This is a fully accessible dialog component to verify overlays, focus management, z-indexing, and responsive scaling.</p>
+        <div class="modal-note">
+          💡 Try pressing the <strong>Escape</strong> key to close this modal.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="modal-cancel-btn">Cancel</button>
+        <button class="btn btn-primary" id="modal-confirm-btn">Acknowledge</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>TestLab &bull; Single-File Ready &bull; Zero External Dependencies</p>
+      <div class="footer-meta">
+        <span>Ready for automated testing, responsive checks &amp; playground sandbox</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
