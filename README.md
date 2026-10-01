@@ -1,4 +1,4 @@
-# TestLab — Modern Web Testing Sandbox by Umair LLC
+# TestLab — Modern Web Testing Sandbox by Mustafa LLC
 
 A lightweight, modern, and zero-dependency website designed for web development, UI verification, network tests, responsive checks, and event inspection.
 
@@ -9,7 +9,7 @@ A lightweight, modern, and zero-dependency website designed for web development,
 - **Network & API Tester**: Interactive HTTP GET request tool measuring latency in ms, status codes, and JSON response formatting.
 - **LocalStorage Tester**: Save, inspect, delete, and clear local storage keys.
 - **UI Feedback & Web Audio API**: Toast notifications, accessible modal dialogs with Escape listener, and Web Audio API synthesizer tone generator.
-- **Customizable Logo**: Interactive logo switcher (Cyber Hexagon, Umair "U" Monogram, Science Lab Flask).
+- **Customizable Logo**: Interactive logo switcher (Cyber Hexagon, Mustafa "M" Monogram, Science Lab Flask).
 - **Dark/Light Mode**: Smooth theme toggling with localStorage persistence.
 
 ## How to Run Locally

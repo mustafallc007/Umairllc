@@ -26,9 +26,9 @@ function initLogoSwitcher() {
             <circle cx="16" cy="16" r="2.2" fill="#ffffff"/>`
     },
     {
-      name: "Umair 'U' Monogram",
+      name: "Mustafa 'M' Monogram",
       svg: `<rect x="3" y="3" width="26" height="26" rx="8" stroke="url(#brand-grad)" stroke-width="2.2" fill="rgba(99, 102, 241, 0.12)"/>
-            <path d="M10 10V18C10 21.3137 12.6863 24 16 24C19.3137 24 22 21.3137 22 18V10" stroke="url(#inner-grad)" stroke-width="2.8" stroke-linecap="round"/>
+            <path d="M8 22V10L16 18L24 10V22" stroke="url(#inner-grad)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
             <circle cx="16" cy="18" r="2" fill="url(#brand-grad)"/>`
     },
     {
